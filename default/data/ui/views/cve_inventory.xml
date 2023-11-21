@@ -1,0 +1,37 @@
+<form theme="dark">
+  <label>Inventory</label>
+  <fieldset autoRun="false" submitButton="true">
+    <input type="text" token="product" searchWhenChanged="false">
+      <label>Product</label>
+    </input>
+    <input type="text" token="vendor">
+      <label>Vendor</label>
+    </input>
+    <input type="text" token="version">
+      <label>Version</label>
+    </input>
+    <input type="dropdown" token="part">
+      <label>Part</label>
+      <choice value="app">Application</choice>
+      <choice value="hardware">Hardware</choice>
+      <choice value="os">OS</choice>
+      <default>app</default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <title>Add new asset</title>
+        <search>
+          <query>| makeresults | eval Product="$product$", Vendor="$vendor$", Version="$version$", "Part (App/OS/Hardware)"="$part$"
+| fields Product Vendor Version "Part (App/OS/Hardware)"
+| outputlookup append=true vendor_product.csv</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">preview</option>
+      </table>
+    </panel>
+  </row>
+</form>

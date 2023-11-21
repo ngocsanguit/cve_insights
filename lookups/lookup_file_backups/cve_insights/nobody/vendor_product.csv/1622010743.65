@@ -1,0 +1,8 @@
+Product,Vendor,Version,Part (App/OS/Hardware),CPE_uri
+Chrome,Google,N/A,Application,cpe:2.3:a:google:chrome:*
+workspace_one,VMWare,N/A,Application,cpe:2.3:a:vmware:workspace_one:*
+,SentinelOne,N/A,Application,N/A
+Mac OS X,Apple,N/A,OS,cpe:2.3:o:apple:mac_os_x:*
+Google,Alexa,"4.523",os,
+Apple,Iphone,"10.5.4",hardware,
+Adobe,"Adobe Reader","10.0",app,

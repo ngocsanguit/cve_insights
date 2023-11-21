@@ -1,0 +1,76 @@
+<form theme="dark">
+  <label>CVE Insights</label>
+  <fieldset submitButton="false">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <chart>
+        <title>Statistic of CVEs by severity</title>
+        <search>
+          <query>index=cve
+|  rename "configurations.nodes{}.cpe_match{}.cpe23Uri" as CPE_uri
+| search 
+    [| inputlookup vendor_product.csv  | where CPE_uri!="N/A" | fields CPE_uri | format]
+    | chart dc(cve.CVE_data_meta.ID) as total by impact.baseMetricV2.severity</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="height">328</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <single>
+        <title>CVE number</title>
+        <search>
+          <query>index=cve | stats count("cve.CVE_data_meta.ID")</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="height">333</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+    <panel>
+      <table>
+        <title>Vendor/Product Management</title>
+        <search>
+          <query>| inputlookup vendor_product.csv
+|  fields Product, Vendor, Version, "Part (App/OS/Hardware)", CPE_uri</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Medium/High CVE last 7 days</title>
+        <search>
+          <query>index=cve "impact.baseMetricV2.severity" = "HIGH" OR "impact.baseMetricV2.severity" = "MEDIUM"
+| eval _time = strptime(lastModifiedDate, "%Y-%m-%dT%H:%M%Z")
+| where _time &gt; relative_time(now(), "-7d@d")
+| timechart count span=1d</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
+  </row>
+</form>

@@ -1,0 +1,9 @@
+<nav search_view="CVE Insights">
+  <collection label="CVE_Insights">
+    <!-- Set main dashboard as the default page -->
+    <view name="cve_insights" default="true" />
+    <view name="cve_insights_score" default="false" />
+  </collection>
+    <view name="cve_inventory" />
+  <view name="search" />
+</nav>

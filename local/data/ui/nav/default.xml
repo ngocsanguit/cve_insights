@@ -1,0 +1,5 @@
+<nav search_view="CVE Insights">
+  <view name="cve_insights" default='true'/>
+    <view name="cve_inventory" />
+  <view name="search" />
+</nav>

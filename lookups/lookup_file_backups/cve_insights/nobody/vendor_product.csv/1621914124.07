@@ -1,0 +1,17 @@
+Vendor,Product,Version,Part (App/OS/Hardware),CPE_uri
+Google,Chrome,N/A,Application,cpe:2.3:a:google:chrome:*
+VMWare,workspace_one,N/A,Application,cpe:2.3:a:vmware:workspace_one:*
+SentinelOne,,N/A,Application,N/A
+Apple,Mac OS X,N/A,OS,cpe:2.3:o:apple:mac_os_x:*
+,,,,
+,,,,
+,,,,
+,,,,
+Google,,"N/A",Application,"cpe:2.3:a:google:chrome:*"
+VMWare,,"N/A",Application,"cpe:2.3:a:vmware:workspace_one:*"
+SentinelOne,,"N/A",Application,"N/A"
+Apple,,"N/A",OS,"cpe:2.3:o:apple:mac_os_x:*"
+,,,,
+,,,,
+,,,,
+,,,,

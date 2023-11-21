@@ -1,0 +1,5 @@
+Vendor,Product,Version,Part (App/OS/Hardware),CPEUri
+Google,Chrome,,Application,cpe:2.3:a:google:chrome:*
+VMWare,workspace_one,,Application,cpe:2.3:a:vmware:workspace_one:*
+SentinelOne,,,Application,
+Apple,Mac OS X,,OS,cpe:2.3:o:apple:mac_os_x:*
